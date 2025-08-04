@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <base target="_top">
+    <script>
+      function pollForStatus() {
+        google.script.run
+          .withSuccessHandler(
+            status => {
+            if (status === 'done') {
+              MyClose();
+            } else {
+              setTimeout(pollForStatus, 500);
+            }
+          }
+        ).getStatus();
+      }
+
+      function MyClose() {
+        google.script.host.close();
+      }
+
+      window.onload = pollForStatus;
+    </script>
+  </head>
+  <body style="text-align: center; font-family: Arial; padding: 20px;">
+    ⏳ <strong>Generando Partida, Aguanta...</strong>
+  </body>
+</html>

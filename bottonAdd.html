@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <base target="_top">
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        padding: 20px;
+      }
+
+      #resetButton {
+        background-color: #e0e0e0;
+        border: none;
+        border-radius: 10px;
+        padding: 12px 24px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background-color 0.2s ease;
+      }
+
+      #resetButton:hover {
+        background-color: #c5e1a5; /* light green */
+      }
+
+      #resetButton:active {
+        background-color: #81c784; /* darker green */
+      }
+
+      #status {
+        margin-top: 20px;
+        color: #333;
+      }
+    </style>
+  </head>
+  <body>
+    <button id="resetButton" onclick="runReset()">🔄 Reset Counting</button>
+    <div id="status"></div>
+
+    <script>
+      function runReset() {
+        document.getElementById('status').textContent = '⏳ Resetting...';
+        google.script.run
+          .withSuccessHandler(function() {
+            document.getElementById('status').textContent = '✅ Reset complete!';
+          })
+          .ResetCounting();
+      }
+    </script>
+  </body>
+</html>
